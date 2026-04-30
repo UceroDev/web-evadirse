@@ -1,0 +1,21 @@
+---
+import Header from "../components/Header.astro";
+import heroImage from "../assets/img/hero.webp";
+import SocialLinks from "../components/SocialLinks.astro";
+---
+
+<section
+    class="relative min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat"
+    style={`background-image: url(${heroImage.src});`}
+>
+    <div class="absolute inset-0 bg-black/55"></div>
+    <div class="absolute inset-x-0 bottom-0 z-1 h-48 bg-linear-to-t from-[#171717] via-[#171717]/70 to-transparent md:h-64"></div>
+
+    <div class="relative z-10">
+        <Header />
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+        <SocialLinks />
+    </div>
+</section>
