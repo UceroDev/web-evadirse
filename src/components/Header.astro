@@ -1,5 +1,8 @@
 ---
 import logo from "../assets/img/logo.png";
+
+const navLinkClass =
+    "relative block px-2 py-1 transition-colors duration-300 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all after:duration-500 hover:after:w-full";
 ---
 
 <header>
@@ -31,13 +34,13 @@ import logo from "../assets/img/logo.png";
             data-menu
         >
             <li class="md:order-1">
-                <a href="#eventos" class="block py-1 transition hover:text-zinc-300">EVENTOS</a>
+                <a href="#eventos" class={navLinkClass}>EVENTOS</a>
             </li>
             <li class="md:order-1">
-                <a href="#conocenos" class="block py-1 transition hover:text-zinc-300">CONOCENOS</a>
+                <a href="#conocenos" class={navLinkClass}>CONOCENOS</a>
             </li>
             <li class="md:order-1">
-                <a href="#galeria" class="block py-1 transition hover:text-zinc-300">GALERIA</a>
+                <a href="#galeria" class={navLinkClass}>GALERIA</a>
             </li>
             <li class="hidden md:order-2 md:block">
                 <a href="/" aria-label="Inicio">
@@ -45,13 +48,13 @@ import logo from "../assets/img/logo.png";
                 </a>
             </li>
             <li class="md:order-3">
-                <a href="#musica" class="block py-1 transition hover:text-zinc-300">MUSICA</a>
+                <a href="#musica" class={navLinkClass}>MUSICA</a>
             </li>
             <li class="md:order-3">
-                <a href="#merch" class="block py-1 transition hover:text-zinc-300">MERCH</a>
+                <a href="#merch" class={navLinkClass}>MERCH</a>
             </li>
             <li class="md:order-3">
-                <a href="#contacto" class="block py-1 transition hover:text-zinc-300">CONTACTO</a>
+                <a href="#contacto" class={navLinkClass}>CONTACTO</a>
             </li>
         </ul>
     </nav>
