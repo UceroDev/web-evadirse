@@ -1,0 +1,19 @@
+---
+import { socialLinks } from "../data/navLinks";
+---
+
+<div class="flex items-center justify-center gap-5">
+    {
+        socialLinks.map((link) => (
+            <a
+                href={link.url}
+                aria-label={link.ariaLabel}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-8 w-8 items-center justify-center text-white transition hover:scale-110 hover:text-zinc-300"
+            >
+                <span class="block h-full w-full [&>svg]:h-full [&>svg]:w-full" set:html={link.icon} />
+            </a>
+        ))
+    }
+</div>
