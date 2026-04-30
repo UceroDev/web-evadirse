@@ -1,5 +1,6 @@
 ---
 const { title = "Evadirse" } = Astro.props;
+import "../styles/global.css";
 ---
 
 <!doctype html>
@@ -9,15 +10,7 @@ const { title = "Evadirse" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-[#171717]">
     <slot />
   </body>
 </html>
-
-<style is:global>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-
-
-</style>
