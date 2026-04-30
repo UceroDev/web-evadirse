@@ -2,16 +2,80 @@
 import logo from "../assets/img/logo.png";
 ---
 
-<header class="bg-black">
-    <nav class="p-4">
-        <ul class="text-white flex justify-center">
-            <li class="m-2">EVENTOS</li>
-            <li class="m-2">CONÓCENOS</li>
-            <li class="m-2">GALERÍA</li>
-            <li class="m-2"><img src={logo.src} alt="Logo Evadirse" class="w-40"/></li>
-            <li class="m-2">MÚSICA</li>
-            <li class="m-2">MERCH</li>
-            <li class="m-2">CONTACTO</li>
+<header>
+    <nav class="mx-auto max-w-6xl px-4 py-4">
+        <div class="flex items-center justify-between md:justify-center md:gap-8">
+            <a href="/" class="md:hidden">
+                <img src={logo.src} alt="Logo Evadirse" class="w-32 md:w-40" />
+            </a>
+
+            <button
+                type="button"
+                class="flex h-10 w-10 items-center justify-center text-white md:hidden"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+                aria-controls="main-menu"
+                data-menu-button
+            >
+                <span class="relative h-5 w-6">
+                    <span class="absolute left-0 top-0 h-0.5 w-6 bg-current transition-all" data-menu-line></span>
+                    <span class="absolute left-0 top-2 h-0.5 w-6 bg-current transition-opacity" data-menu-line></span>
+                    <span class="absolute left-0 top-4 h-0.5 w-6 bg-current transition-all" data-menu-line></span>
+                </span>
+            </button>
+        </div>
+
+        <ul
+            id="main-menu"
+            class="hidden flex-col items-center gap-4 pt-6 text-center text-sm font-semibold uppercase tracking-wide text-white md:flex md:flex-row md:justify-center md:gap-8 md:pt-0"
+            data-menu
+        >
+            <li class="md:order-1">
+                <a href="#eventos" class="block py-1 transition hover:text-zinc-300">EVENTOS</a>
+            </li>
+            <li class="md:order-1">
+                <a href="#conocenos" class="block py-1 transition hover:text-zinc-300">CONOCENOS</a>
+            </li>
+            <li class="md:order-1">
+                <a href="#galeria" class="block py-1 transition hover:text-zinc-300">GALERIA</a>
+            </li>
+            <li class="hidden md:order-2 md:block">
+                <a href="/" aria-label="Inicio">
+                    <img src={logo.src} alt="Logo Evadirse" class="w-40" />
+                </a>
+            </li>
+            <li class="md:order-3">
+                <a href="#musica" class="block py-1 transition hover:text-zinc-300">MUSICA</a>
+            </li>
+            <li class="md:order-3">
+                <a href="#merch" class="block py-1 transition hover:text-zinc-300">MERCH</a>
+            </li>
+            <li class="md:order-3">
+                <a href="#contacto" class="block py-1 transition hover:text-zinc-300">CONTACTO</a>
+            </li>
         </ul>
     </nav>
 </header>
+
+<script>
+    const menuButton = document.querySelector("[data-menu-button]");
+    const menu = document.querySelector("[data-menu]");
+    const menuLines = document.querySelectorAll("[data-menu-line]");
+
+    menuButton?.addEventListener("click", () => {
+        const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+
+        menuButton.setAttribute("aria-expanded", String(!isOpen));
+        menuButton.setAttribute("aria-label", isOpen ? "Abrir menu" : "Cerrar menu");
+        menu?.classList.toggle("hidden", isOpen);
+        menu?.classList.toggle("flex", !isOpen);
+
+        menuLines[0]?.classList.toggle("rotate-45", !isOpen);
+        menuLines[0]?.classList.toggle("top-0", isOpen);
+        menuLines[0]?.classList.toggle("top-2", !isOpen);
+        menuLines[1]?.classList.toggle("opacity-0", !isOpen);
+        menuLines[2]?.classList.toggle("-rotate-45", !isOpen);
+        menuLines[2]?.classList.toggle("top-4", isOpen);
+        menuLines[2]?.classList.toggle("top-2", !isOpen);
+    });
+</script>
