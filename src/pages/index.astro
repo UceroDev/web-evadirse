@@ -1,10 +1,136 @@
 ---
 import Base from "../layouts/Base.astro";
 import Hero from "../components/Hero.astro";
+import hqpevCover from "../assets/img/hqpev.webp";
+import octubreCover from "../assets/img/octubre.webp";
+import pajarosVerdesCover from "../assets/img/pajaros-verdes.webp";
+import cartuchosCover from "../assets/img/cartuchos-de-cristal.webp";
+import eventsImage from "../assets/img/eventos-imagen.webp";
+
+const covers = [
+  {
+    title: "Hasta Que Pare El Viento",
+    image: hqpevCover,
+    alt: "Portada de HQPEV",
+  },
+  { title: "Octubre", image: octubreCover, alt: "Portada de Octubre" },
+  {
+    title: "Pájaros Verdes",
+    image: pajarosVerdesCover,
+    alt: "Portada de Pajaros Verdes",
+  },
+  {
+    title: "Cartuchos de Cristal",
+    image: cartuchosCover,
+    alt: "Portada de Cartuchos de Cristal",
+  },
+];
 ---
 
 <Base title="Landing">
   <main>
-    <Hero></Hero>
+    <Hero />
+
+    <section
+      id="musica"
+      class="flex min-h-screen items-center overflow-hidden bg-[#171717] py-16"
+      data-music-section
+    >
+      <div
+        class="w-screen overflow-hidden"
+        style="--cover-size: clamp(20rem, 48vw, 38rem);"
+        data-covers-viewport
+      >
+        <div
+          class="flex w-max gap-8 px-[calc((100vw-var(--cover-size))/2)] will-change-transform"
+          data-covers-track
+        >
+          {
+            covers.map((cover) => (
+              <figure class="group relative aspect-square w-(--cover-size) shrink-0 overflow-hidden">
+                <img
+                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  src={cover.image.src}
+                  alt={cover.alt}
+                />
+                <figcaption class="absolute inset-0 flex items-center justify-center px-6 text-center opacity-0 transition duration-300 group-hover:bg-white/25 group-hover:opacity-100">
+                  <span class="text-xl font-black uppercase tracking-[0.18em] text-black drop-shadow-2xl sm:text-2xl">
+                    {cover.title}
+                  </span>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="eventos" class="relative min-h-screen overflow-hidden">
+      <div
+        class="absolute -inset-6 bg-cover bg-center bg-no-repeat will-change-transform"
+        style={`background-image: url(${eventsImage.src});`}
+        data-hero-bg
+      >
+      </div>
+
+      <div class="relative z-10">
+        <h2 class="text-white flex justify-center text-4xl m-8">
+          PRÓXIMOS EVENTOS
+        </h2>
+
+        <div>
+          
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const section = document.querySelector("[data-music-section]");
+    const viewport = document.querySelector("[data-covers-viewport]");
+    const track = document.querySelector("[data-covers-track]");
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (section && viewport && track && !reducedMotion) {
+      const musicSection = section as HTMLElement;
+      const coversViewport = viewport as HTMLElement;
+      const coversTrack = track as HTMLElement;
+
+      const getScrollDistance = () =>
+        Math.max(
+          0,
+          coversTrack.scrollWidth -
+            coversViewport.getBoundingClientRect().width,
+        );
+      const getEndDistance = () =>
+        getScrollDistance() + window.innerHeight * 0.35;
+
+      const coversTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: musicSection,
+          start: "top top",
+          end: () => `+=${getEndDistance()}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      coversTimeline
+        .to(coversTrack, {
+          x: () => -getScrollDistance(),
+          ease: "none",
+          duration: 1,
+        })
+        .to({}, { duration: 0.35 });
+    }
+  </script>
 </Base>
