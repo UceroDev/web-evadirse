@@ -6,23 +6,39 @@ import octubreCover from "../assets/img/octubre.webp";
 import pajarosVerdesCover from "../assets/img/pajaros-verdes.webp";
 import cartuchosCover from "../assets/img/cartuchos-de-cristal.webp";
 import eventsImage from "../assets/img/eventos-imagen.webp";
+import { socialLinks } from "../data/navLinks";
+
+const spotifyIcon = socialLinks.find((link) => link.name === "Spotify")?.icon;
+const youtubeIcon = socialLinks.find((link) => link.name === "YouTube")?.icon;
 
 const covers = [
   {
     title: "Hasta Que Pare El Viento",
     image: hqpevCover,
     alt: "Portada de HQPEV",
+    spotifyLink: "https://open.spotify.com/intl-es/track/5n1c1Htfri3jVHbvIxZ8dV?si=36743882a1214f7b",
+    youtubeLink: "https://www.youtube.com/watch?v=aWsxvgAqTfU",
   },
-  { title: "Octubre", image: octubreCover, alt: "Portada de Octubre" },
+  { 
+    title: "Octubre", 
+    image: octubreCover, 
+    alt: "Portada de Octubre",
+    spotifyLink: "https://open.spotify.com/intl-es/track/6J1EozN8mT82xkk1zaiEi8?si=154f0251b6534252",
+    youtubeLink: "https://www.youtube.com/watch?v=M45l-rUEsfw",
+  },
   {
     title: "Pájaros Verdes",
     image: pajarosVerdesCover,
     alt: "Portada de Pajaros Verdes",
+    spotifyLink: "https://open.spotify.com/intl-es/track/6KH4K7kKHnm4x6BhKssXNt?si=38670b492d144f14",
+    youtubeLink: "https://www.youtube.com/watch?v=k5-GL-Rdhxw",
   },
   {
     title: "Cartuchos de Cristal",
     image: cartuchosCover,
     alt: "Portada de Cartuchos de Cristal",
+    spotifyLink: "https://open.spotify.com/intl-es/track/1hKPoIMJx34cDImrroTHTi?si=6066a1ecd1c94038",
+    youtubeLink: "https://www.youtube.com/watch?v=zBxSNMCeTwU",
   },
 ];
 ---
@@ -54,9 +70,41 @@ const covers = [
                   alt={cover.alt}
                 />
                 <figcaption class="absolute inset-0 flex items-center justify-center px-6 text-center opacity-0 transition duration-300 group-hover:bg-white/25 group-hover:opacity-100">
-                  <span class="text-xl font-black uppercase tracking-[0.18em] text-black drop-shadow-2xl sm:text-2xl">
-                    {cover.title}
-                  </span>
+                  <div class="flex flex-col items-center gap-4">
+                    <span class="text-xl font-black uppercase sm:text-2xl">
+                      {cover.title}
+                    </span>
+
+                    <div class="flex items-center justify-center gap-4">
+                      {
+                        spotifyIcon && (
+                          <a
+                            href={cover.spotifyLink}
+                            aria-label={`Escuchar ${cover.title} en Spotify`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex w-14 items-center justify-center text-black transition hover:scale-110"
+                          >
+                            <span class="block h-full w-full [&>svg]:h-full [&>svg]:w-full" set:html={spotifyIcon} />
+                          </a>
+                        )
+                      }
+
+                      {
+                        youtubeIcon && (
+                          <a
+                            href={cover.youtubeLink}
+                            aria-label={`Ver ${cover.title} en YouTube`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex w-14 items-center justify-center text-black transition hover:scale-110"
+                          >
+                            <span class="block h-full w-full [&>svg]:h-full [&>svg]:w-full" set:html={youtubeIcon} />
+                          </a>
+                        )
+                      }
+                    </div>
+                  </div>
                 </figcaption>
               </figure>
             ))
