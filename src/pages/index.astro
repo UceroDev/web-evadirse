@@ -16,28 +16,32 @@ const covers = [
     title: "Hasta Que Pare El Viento",
     image: hqpevCover,
     alt: "Portada de HQPEV",
-    spotifyLink: "https://open.spotify.com/intl-es/track/5n1c1Htfri3jVHbvIxZ8dV?si=36743882a1214f7b",
+    spotifyLink:
+      "https://open.spotify.com/intl-es/track/5n1c1Htfri3jVHbvIxZ8dV?si=36743882a1214f7b",
     youtubeLink: "https://www.youtube.com/watch?v=aWsxvgAqTfU",
   },
-  { 
-    title: "Octubre", 
-    image: octubreCover, 
+  {
+    title: "Octubre",
+    image: octubreCover,
     alt: "Portada de Octubre",
-    spotifyLink: "https://open.spotify.com/intl-es/track/6J1EozN8mT82xkk1zaiEi8?si=154f0251b6534252",
+    spotifyLink:
+      "https://open.spotify.com/intl-es/track/6J1EozN8mT82xkk1zaiEi8?si=154f0251b6534252",
     youtubeLink: "https://www.youtube.com/watch?v=M45l-rUEsfw",
   },
   {
     title: "Pájaros Verdes",
     image: pajarosVerdesCover,
     alt: "Portada de Pajaros Verdes",
-    spotifyLink: "https://open.spotify.com/intl-es/track/6KH4K7kKHnm4x6BhKssXNt?si=38670b492d144f14",
+    spotifyLink:
+      "https://open.spotify.com/intl-es/track/6KH4K7kKHnm4x6BhKssXNt?si=38670b492d144f14",
     youtubeLink: "https://www.youtube.com/watch?v=k5-GL-Rdhxw",
   },
   {
     title: "Cartuchos de Cristal",
     image: cartuchosCover,
     alt: "Portada de Cartuchos de Cristal",
-    spotifyLink: "https://open.spotify.com/intl-es/track/1hKPoIMJx34cDImrroTHTi?si=6066a1ecd1c94038",
+    spotifyLink:
+      "https://open.spotify.com/intl-es/track/1hKPoIMJx34cDImrroTHTi?si=6066a1ecd1c94038",
     youtubeLink: "https://www.youtube.com/watch?v=zBxSNMCeTwU",
   },
 ];
@@ -76,33 +80,35 @@ const covers = [
                     </span>
 
                     <div class="flex items-center justify-center gap-4">
-                      {
-                        spotifyIcon && (
-                          <a
-                            href={cover.spotifyLink}
-                            aria-label={`Escuchar ${cover.title} en Spotify`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="flex w-14 items-center justify-center text-black transition hover:scale-110"
-                          >
-                            <span class="block h-full w-full [&>svg]:h-full [&>svg]:w-full" set:html={spotifyIcon} />
-                          </a>
-                        )
-                      }
+                      {spotifyIcon && (
+                        <a
+                          href={cover.spotifyLink}
+                          aria-label={`Escuchar ${cover.title} en Spotify`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="flex w-14 items-center justify-center text-black transition hover:scale-110"
+                        >
+                          <span
+                            class="block h-full w-full [&>svg]:h-full [&>svg]:w-full"
+                            set:html={spotifyIcon}
+                          />
+                        </a>
+                      )}
 
-                      {
-                        youtubeIcon && (
-                          <a
-                            href={cover.youtubeLink}
-                            aria-label={`Ver ${cover.title} en YouTube`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="flex w-14 items-center justify-center text-black transition hover:scale-110"
-                          >
-                            <span class="block h-full w-full [&>svg]:h-full [&>svg]:w-full" set:html={youtubeIcon} />
-                          </a>
-                        )
-                      }
+                      {youtubeIcon && (
+                        <a
+                          href={cover.youtubeLink}
+                          aria-label={`Ver ${cover.title} en YouTube`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="flex w-14 items-center justify-center text-black transition hover:scale-110"
+                        >
+                          <span
+                            class="block h-full w-full [&>svg]:h-full [&>svg]:w-full"
+                            set:html={youtubeIcon}
+                          />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </figcaption>
@@ -126,8 +132,35 @@ const covers = [
           PRÓXIMOS EVENTOS
         </h2>
 
-        <div>
-          
+        <div class="mx-auto w-full max-w-5xl overflow-x-auto px-6 text-white">
+          <table class="w-full min-w-[42rem] border-collapse text-left text-sm uppercase tracking-wide sm:text-base">
+            <tbody>
+              <tr>
+                <td class="py-5 pr-6 font-semibold">2 de junio</td>
+                <td class="px-6 py-5">Razzmatazz</td>
+                <td class="px-6 py-5">Barcelona</td>
+                <td class="py-5 pl-6 underline">Gratuito</td>
+              </tr>
+              <tr>
+                <td class="py-5 pr-6 font-semibold">20 de junio</td>
+                <td class="px-6 py-5">------</td>
+                <td class="px-6 py-5">------</td>
+                <td class="py-5 pl-6 underline">Gratuito</td>
+              </tr>
+              <tr>
+                <td class="py-5 pr-6 font-semibold">5 de julio</td>
+                <td class="px-6 py-5">Festa Major</td>
+                <td class="px-6 py-5">Terrassa</td>
+                <td class="py-5 pl-6 underline">Gratuito</td>
+              </tr>
+              <tr>
+                <td class="py-5 pr-6 font-semibold">10 de octubre</td>
+                <td class="px-6 py-5">Sala Rasa 64</td>
+                <td class="px-6 py-5">Terrassa</td>
+                <td class="py-5 pl-6">Entradas</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
