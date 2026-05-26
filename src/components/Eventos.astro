@@ -1,0 +1,51 @@
+---
+import eventsImage from "../assets/img/eventos-imagen.webp";
+---
+
+<section id="eventos" class="relative min-h-screen overflow-hidden">
+  <div
+    class="absolute -inset-6 bg-cover bg-center bg-no-repeat will-change-transform"
+    style={`background-image: url(${eventsImage.src});`}
+    data-hero-bg
+  >
+  </div>
+
+  <div class="relative z-10">
+    <h2 class="text-white flex justify-center text-4xl m-8">
+      PRÓXIMOS EVENTOS
+    </h2>
+
+    <div class="mx-auto w-full max-w-5xl overflow-x-auto px-6 text-white">
+      <table
+        class="w-full min-w-2xl border-collapse text-left text-sm uppercase tracking-wide sm:text-base"
+      >
+        <tbody>
+          <tr>
+            <td class="py-5 pr-6 font-semibold">2 de junio</td>
+            <td class="px-6 py-5">Razzmatazz</td>
+            <td class="px-6 py-5">Barcelona</td>
+            <td class="py-5 pl-6 underline">Gratuito</td>
+          </tr>
+          <tr>
+            <td class="py-5 pr-6 font-semibold">20 de junio</td>
+            <td class="px-6 py-5">------</td>
+            <td class="px-6 py-5">------</td>
+            <td class="py-5 pl-6 underline">Gratuito</td>
+          </tr>
+          <tr>
+            <td class="py-5 pr-6 font-semibold">5 de julio</td>
+            <td class="px-6 py-5">Festa Major</td>
+            <td class="px-6 py-5">Terrassa</td>
+            <td class="py-5 pl-6 underline">Gratuito</td>
+          </tr>
+          <tr>
+            <td class="py-5 pr-6 font-semibold">10 de octubre</td>
+            <td class="px-6 py-5">Sala Rasa 64</td>
+            <td class="px-6 py-5">Terrassa</td>
+            <td class="py-5 pl-6">Entradas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
