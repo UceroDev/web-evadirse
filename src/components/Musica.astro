@@ -1,0 +1,161 @@
+---
+import hqpevCover from "../assets/img/hqpev.webp";
+import octubreCover from "../assets/img/octubre.webp";
+import pajarosVerdesCover from "../assets/img/pajaros-verdes.webp";
+import cartuchosCover from "../assets/img/cartuchos-de-cristal.webp";
+import { socialLinks } from "../data/navLinks";
+
+const spotifyIcon = socialLinks.find((link) => link.name === "Spotify")?.icon;
+const youtubeIcon = socialLinks.find((link) => link.name === "YouTube")?.icon;
+
+const covers = [
+  {
+    title: "Hasta Que Pare El Viento",
+    image: hqpevCover,
+    alt: "Portada de HQPEV",
+    spotifyLink:
+      "https://open.spotify.com/intl-es/track/5n1c1Htfri3jVHbvIxZ8dV?si=36743882a1214f7b",
+    youtubeLink: "https://www.youtube.com/watch?v=aWsxvgAqTfU",
+  },
+  {
+    title: "Octubre",
+    image: octubreCover,
+    alt: "Portada de Octubre",
+    spotifyLink:
+      "https://open.spotify.com/intl-es/track/6J1EozN8mT82xkk1zaiEi8?si=154f0251b6534252",
+    youtubeLink: "https://www.youtube.com/watch?v=M45l-rUEsfw",
+  },
+  {
+    title: "Pájaros Verdes",
+    image: pajarosVerdesCover,
+    alt: "Portada de Pajaros Verdes",
+    spotifyLink:
+      "https://open.spotify.com/intl-es/track/6KH4K7kKHnm4x6BhKssXNt?si=38670b492d144f14",
+    youtubeLink: "https://www.youtube.com/watch?v=k5-GL-Rdhxw",
+  },
+  {
+    title: "Cartuchos de Cristal",
+    image: cartuchosCover,
+    alt: "Portada de Cartuchos de Cristal",
+    spotifyLink:
+      "https://open.spotify.com/intl-es/track/1hKPoIMJx34cDImrroTHTi?si=6066a1ecd1c94038",
+    youtubeLink: "https://www.youtube.com/watch?v=zBxSNMCeTwU",
+  },
+];
+---
+
+<section
+  id="musica"
+  class="flex min-h-screen items-center overflow-hidden bg-[#171717] py-16"
+  data-music-section
+>
+  <div
+    class="w-screen overflow-hidden"
+    style="--cover-size: clamp(20rem, 48vw, 38rem);"
+    data-covers-viewport
+  >
+    <div
+      class="flex w-max gap-8 px-[calc((100vw-var(--cover-size))/2)] will-change-transform"
+      data-covers-track
+    >
+      {
+        covers.map((cover) => (
+          <figure class="group relative aspect-square w-(--cover-size) shrink-0 overflow-hidden">
+            <img
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              src={cover.image.src}
+              alt={cover.alt}
+            />
+            <figcaption class="absolute inset-0 flex items-center justify-center px-6 text-center opacity-0 transition duration-300 group-hover:bg-white/25 group-hover:opacity-100">
+              <div class="flex flex-col items-center gap-4">
+                <span class="text-xl font-black uppercase sm:text-2xl">
+                  {cover.title}
+                </span>
+
+                <div class="flex items-center justify-center gap-4">
+                  {spotifyIcon && (
+                    <a
+                      href={cover.spotifyLink}
+                      aria-label={`Escuchar ${cover.title} en Spotify`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex w-14 items-center justify-center text-black transition hover:scale-110"
+                    >
+                      <span
+                        class="block h-full w-full [&>svg]:h-full [&>svg]:w-full"
+                        set:html={spotifyIcon}
+                      />
+                    </a>
+                  )}
+
+                  {youtubeIcon && (
+                    <a
+                      href={cover.youtubeLink}
+                      aria-label={`Ver ${cover.title} en YouTube`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex w-14 items-center justify-center text-black transition hover:scale-110"
+                    >
+                      <span
+                        class="block h-full w-full [&>svg]:h-full [&>svg]:w-full"
+                        set:html={youtubeIcon}
+                      />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.querySelector("[data-music-section]");
+  const viewport = document.querySelector("[data-covers-viewport]");
+  const track = document.querySelector("[data-covers-track]");
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  if (section && viewport && track && !reducedMotion) {
+    const musicSection = section as HTMLElement;
+    const coversViewport = viewport as HTMLElement;
+    const coversTrack = track as HTMLElement;
+
+    const getScrollDistance = () =>
+      Math.max(
+        0,
+        coversTrack.scrollWidth - coversViewport.getBoundingClientRect().width,
+      );
+    const getEndDistance = () =>
+      getScrollDistance() + window.innerHeight * 0.35;
+
+    const coversTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: musicSection,
+        start: "top top",
+        end: () => `+=${getEndDistance()}`,
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    coversTimeline
+      .to(coversTrack, {
+        x: () => -getScrollDistance(),
+        ease: "none",
+        duration: 1,
+      })
+      .to({}, { duration: 0.35 });
+  }
+</script>
