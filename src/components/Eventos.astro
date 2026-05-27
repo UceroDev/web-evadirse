@@ -22,46 +22,115 @@ import eventsImage from "../assets/img/eventos-imagen.webp";
   >
   </div>
 
-  <div class="absolute inset-0 bg-black/50" data-hero-shade></div>
+  <div class="absolute inset-0 bg-black/65" data-hero-shade></div>
 
   <div
-    class="relative z-10 flex min-h-screen flex-col items-center justify-center"
+    class="relative z-10 flex min-h-screen flex-col items-center justify-center px-6"
   >
-    <h2 class="text-white flex justify-center text-6xl m-8 font-anton">
-      PRÓXIMOS EVENTOS
-    </h2>
+    <div class="mb-12 text-center">
+      <h2 class="font-anton text-5xl text-white sm:text-6xl lg:text-7xl">
+        PRÓXIMOS EVENTOS
+      </h2>
+    </div>
 
-    <div class="mx-auto w-full max-w-5xl overflow-x-auto px-6 text-white">
-      <table
-        class="w-full min-w-2xl border-collapse text-left text-sm uppercase tracking-wide sm:text-base"
-      >
-        <tbody>
-          <tr>
-            <td class="py-5 pr-6 font-semibold text-2xl">2 de junio</td>
-            <td class="px-6 py-5 text-2xl">Razzmatazz</td>
-            <td class="px-6 py-5 text-2xl">Barcelona</td>
-            <td class="py-5 pl-6 underline text-2xl">Gratuito</td>
-          </tr>
-          <tr>
-            <td class="py-5 pr-6 font-semibold text-2xl">20 de junio</td>
-            <td class="px-6 py-5 text-2xl">------</td>
-            <td class="px-6 py-5 text-2xl">------</td>
-            <td class="py-5 pl-6 underline text-2xl">Gratuito</td>
-          </tr>
-          <tr>
-            <td class="py-5 pr-6 font-semibold text-2xl">5 de julio</td>
-            <td class="px-6 py-5 text-2xl">Festa Major</td>
-            <td class="px-6 py-5 text-2xl">Terrassa</td>
-            <td class="py-5 pl-6 underline text-2xl">Gratuito</td>
-          </tr>
-          <tr>
-            <td class="py-5 pr-6 font-semibold text-2xl">10 de octubre</td>
-            <td class="px-6 py-5 text-2xl">Sala Rasa 64</td>
-            <td class="px-6 py-5 text-2xl">Terrassa</td>
-            <td class="py-5 pl-6 text-2xl">Entradas</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="mx-auto w-full max-w-4xl">
+      <div class="divide-y divide-white/10">
+        <div
+          class="group flex items-center justify-between gap-4 py-5 transition-all duration-300 hover:bg-white/5 hover:px-4 rounded-sm"
+        >
+          <span
+            class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
+          >
+            2 Jun
+          </span>
+          <div class="flex-1">
+            <p class="font-anton text-2xl text-white uppercase sm:text-3xl">
+              Razzmatazz
+            </p>
+            <p class="mt-0.5 text-sm text-white tracking-wide">Barcelona</p>
+          </div>
+          <span
+            class="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-400"
+          >
+            Gratuito
+          </span>
+        </div>
+
+        <div
+          class="group flex items-center justify-between gap-4 py-5 transition-all duration-300 hover:bg-white/5 hover:px-4 rounded-sm"
+        >
+          <span
+            class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
+          >
+            20 Jun
+          </span>
+          <div class="flex-1">
+            <p class="font-anton text-2xl text-white uppercase sm:text-3xl">
+              Por confirmar
+            </p>
+            <p class="mt-0.5 text-sm text-white tracking-wide">—</p>
+          </div>
+          <span
+            class="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-400"
+          >
+            Gratuito
+          </span>
+        </div>
+
+        <div
+          class="group flex items-center justify-between gap-4 py-5 transition-all duration-300 hover:bg-white/5 hover:px-4 rounded-sm"
+        >
+          <span
+            class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
+          >
+            5 Jul
+          </span>
+          <div class="flex-1">
+            <p class="font-anton text-2xl text-white uppercase sm:text-3xl">
+              Festa Major
+            </p>
+            <p class="mt-0.5 text-sm text-white tracking-wide">Terrassa</p>
+          </div>
+          <span
+            class="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-400"
+          >
+            Gratuito
+          </span>
+        </div>
+
+        <div
+          class="group flex items-center justify-between gap-4 py-5 transition-all duration-300 hover:bg-white/5 hover:px-4 rounded-sm"
+        >
+          <span
+            class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
+          >
+            10 Oct
+          </span>
+          <div class="flex-1">
+            <p class="font-anton text-2xl text-white uppercase sm:text-3xl">
+              Sala Rasa 64
+            </p>
+            <p class="mt-0.5 text-sm text-white tracking-wide">Terrassa</p>
+          </div>
+
+          <a
+            href="https://entradium.com/events/evadirse-sala-rasa-64-10-10-2026-terrassa"
+            class="group/btn relative shrink-0 overflow-hidden rounded-full border
+          border-white/30 px-5 py-1.5 text-xs font-semibold uppercase
+          tracking-widest text-white transition-all duration-300
+          hover:border-white"
+          >
+            <span
+              class="relative z-10 transition-colors duration-300 group-hover/btn:text-black"
+            >
+              Entradas
+            </span>
+            <span
+              class="absolute inset-0 translate-y-full bg-white transition-transform duration-300 group-hover/btn:translate-y-0"
+            ></span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
