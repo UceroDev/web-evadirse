@@ -3,12 +3,26 @@ import eventsImage from "../assets/img/eventos-imagen.webp";
 ---
 
 <section id="eventos" class="relative min-h-screen overflow-hidden">
+  <!-- Gradient superior -->
+  <div
+    class="absolute inset-x-0 top-0 z-10 h-48 bg-linear-to-b from-[#171717] to-transparent"
+  >
+  </div>
+
+  <!-- Gradient inferior -->
+  <div
+    class="absolute inset-x-0 bottom-0 z-10 h-48 bg-linear-to-t from-[#171717] to-transparent"
+  >
+  </div>
+
   <div
     class="absolute -inset-6 bg-cover bg-center bg-no-repeat will-change-transform"
     style={`background-image: url(${eventsImage.src});`}
     data-hero-bg
   >
   </div>
+
+  <div class="absolute inset-0 bg-black/50" data-hero-shade></div>
 
   <div class="relative z-10">
     <h2 class="text-white flex justify-center text-4xl m-8">
