@@ -2,70 +2,43 @@
 import Header from "../components/Header.astro";
 import heroImage from "../assets/img/hero.webp";
 import SocialLinks from "../components/SocialLinks.astro";
+import heroVideo from "../assets/video-hero.mp4";
 ---
 
-<section
-    class="relative min-h-screen overflow-hidden bg-[#171717]"
-    data-hero
->
-    <div
-        class="absolute -inset-6 bg-cover bg-center bg-no-repeat will-change-transform"
-        style={`background-image: url(${heroImage.src});`}
-        data-hero-bg
-    ></div>
-    <div class="absolute inset-0 bg-black/55" data-hero-shade></div>
-    <div class="absolute inset-0 opacity-0 mix-blend-overlay bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.12)_0px,rgba(255,255,255,0.12)_1px,transparent_1px,transparent_6px)]" data-hero-noise></div>
-    <div class="absolute inset-x-0 bottom-0 z-1 h-48 bg-linear-to-t from-[#171717] via-[#171717]/70 to-transparent md:h-64"></div>
+<section class="relative min-h-screen overflow-hidden bg-[#171717]">
+  <div class="absolute inset-0 overflow-hidden">
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      class="absolute inset-0 h-full w-full object-cover"
+    >
+      <source src={heroVideo} type="video/mp4" />
+    </video>
+  </div>
 
-    <div class="relative z-10" data-hero-header>
-        <Header />
-    </div>
+  <div class="absolute inset-0 bg-black/30" data-hero-shade></div>
 
-    <div class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2" data-hero-social>
-        <SocialLinks />
-    </div>
+  <div
+    class="absolute inset-0 opacity-0 mix-blend-overlay bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.12)_0px,rgba(255,255,255,0.12)_1px,transparent_1px,transparent_6px)]"
+    data-hero-noise
+  >
+  </div>
+
+  <div
+    class="absolute inset-x-0 bottom-0 z-1 h-48 bg-linear-to-t from-[#171717] via-[#171717]/70 to-transparent md:h-64"
+  >
+  </div>
+
+  <div class="relative z-10" data-hero-header>
+    <Header />
+  </div>
+
+  <div
+    class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+    data-hero-social
+  >
+    <SocialLinks />
+  </div>
 </section>
-
-<script>
-    import gsap from "gsap";
-
-    const hero = document.querySelector("[data-hero]");
-    const bg = document.querySelector("[data-hero-bg]");
-    const shade = document.querySelector("[data-hero-shade]");
-    const noise = document.querySelector("[data-hero-noise]");
-    const header = document.querySelector("[data-hero-header]");
-    const social = document.querySelector("[data-hero-social]");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (hero && bg && shade && noise && header && social && !reducedMotion) {
-        const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-        intro
-            .fromTo(bg, { scale: 1.12, filter: "brightness(0.72) contrast(1.15)" }, { scale: 1, filter: "brightness(1) contrast(1)", duration: 2.2 })
-            .fromTo(shade, { opacity: 0.82 }, { opacity: 1, duration: 1.2 }, 0)
-            .fromTo(noise, { opacity: 0 }, { opacity: 0.22, duration: 1.4 }, 0.35)
-            .fromTo(header, { y: -24, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, 0.35)
-            .fromTo(social, { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, 0.7);
-
-        const moveBg = gsap.quickTo(bg, "x", { duration: 0.8, ease: "power3.out" });
-        const moveBgY = gsap.quickTo(bg, "y", { duration: 0.8, ease: "power3.out" });
-        const moveNoise = gsap.quickTo(noise, "x", { duration: 0.5, ease: "power2.out" });
-
-        hero.addEventListener("pointermove", (event) => {
-            const pointerEvent = event as PointerEvent;
-            const { innerWidth, innerHeight } = window;
-            const x = (pointerEvent.clientX / innerWidth - 0.5) * 18;
-            const y = (pointerEvent.clientY / innerHeight - 0.5) * 12;
-
-            moveBg(x);
-            moveBgY(y);
-            moveNoise(x * -0.7);
-        });
-
-        hero.addEventListener("pointerleave", () => {
-            moveBg(0);
-            moveBgY(0);
-            moveNoise(0);
-        });
-    }
-</script>
