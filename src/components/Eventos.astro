@@ -1,26 +1,22 @@
 ---
 import eventsImage from "../assets/img/eventos-imagen.webp";
+import { events } from "../data/events";
 ---
 
 <section id="eventos" class="relative min-h-screen overflow-hidden">
-  <!-- Gradient superior -->
   <div
     class="absolute inset-x-0 top-0 z-10 h-48 bg-linear-to-b from-[#171717] to-transparent"
-  >
-  </div>
+  ></div>
 
-  <!-- Gradient inferior -->
   <div
     class="absolute inset-x-0 bottom-0 z-10 h-48 bg-linear-to-t from-[#171717] to-transparent"
-  >
-  </div>
+  ></div>
 
   <div
     class="absolute -inset-6 bg-cover bg-center bg-no-repeat will-change-transform"
     style={`background-image: url(${eventsImage.src});`}
     data-hero-bg
-  >
-  </div>
+  ></div>
 
   <div class="absolute inset-0 bg-black/65" data-hero-shade></div>
 
@@ -35,101 +31,40 @@ import eventsImage from "../assets/img/eventos-imagen.webp";
 
     <div class="mx-auto w-full max-w-4xl">
       <div class="divide-y divide-white/10">
-        <div
-          class="group flex items-center justify-between gap-4 py-5 transition-all duration-300 hover:bg-white/5 hover:px-4 rounded-sm"
-        >
-          <span
-            class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
-          >
-            2 Jun
-          </span>
-          <div class="flex-1">
-            <p class="font-anton text-2xl text-white uppercase sm:text-3xl">
-              Razzmatazz
-            </p>
-            <p class="mt-0.5 text-sm text-white tracking-wide">Barcelona</p>
-          </div>
-          <span
-            class="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-400"
-          >
-            Gratuito
-          </span>
-        </div>
-
-        <div
-          class="group flex items-center justify-between gap-4 py-5 transition-all duration-300 hover:bg-white/5 hover:px-4 rounded-sm"
-        >
-          <span
-            class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
-          >
-            20 Jun
-          </span>
-          <div class="flex-1">
-            <p class="font-anton text-2xl text-white uppercase sm:text-3xl">
-              Por confirmar
-            </p>
-            <p class="mt-0.5 text-sm text-white tracking-wide">—</p>
-          </div>
-          <span
-            class="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-400"
-          >
-            Gratuito
-          </span>
-        </div>
-
-        <div
-          class="group flex items-center justify-between gap-4 py-5 transition-all duration-300 hover:bg-white/5 hover:px-4 rounded-sm"
-        >
-          <span
-            class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
-          >
-            5 Jul
-          </span>
-          <div class="flex-1">
-            <p class="font-anton text-2xl text-white uppercase sm:text-3xl">
-              Festa Major
-            </p>
-            <p class="mt-0.5 text-sm text-white tracking-wide">Terrassa</p>
-          </div>
-          <span
-            class="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-400"
-          >
-            Gratuito
-          </span>
-        </div>
-
-        <div
-          class="group flex items-center justify-between gap-4 py-5 transition-all duration-300 hover:bg-white/5 hover:px-4 rounded-sm"
-        >
-          <span
-            class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
-          >
-            10 Oct
-          </span>
-          <div class="flex-1">
-            <p class="font-anton text-2xl text-white uppercase sm:text-3xl">
-              Sala Rasa 64
-            </p>
-            <p class="mt-0.5 text-sm text-white tracking-wide">Terrassa</p>
-          </div>
-
-          <a
-            href="https://entradium.com/events/evadirse-sala-rasa-64-10-10-2026-terrassa"
-            class="group/btn relative shrink-0 overflow-hidden rounded-full border
-          border-white/30 px-5 py-1.5 text-xs font-semibold uppercase
-          tracking-widest text-white transition-all duration-300
-          hover:border-white"
+        {events.map(({ date, name, location, ticketUrl }) => (
+          <div
+            class="group flex items-center justify-between gap-4 rounded-sm py-5 transition-all duration-300"
           >
             <span
-              class="relative z-10 transition-colors duration-300 group-hover/btn:text-black"
+              class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
             >
-              Entradas
+              {date}
             </span>
-            <span
-              class="absolute inset-0 translate-y-full bg-white transition-transform duration-300 group-hover/btn:translate-y-0"
-            ></span>
-          </a>
-        </div>
+
+            <div class="flex-1">
+              <p class="font-anton text-2xl uppercase text-white sm:text-3xl">
+                {name}
+              </p>
+              <p class="mt-0.5 text-sm tracking-wide text-white">{location}</p>
+            </div>
+
+            {ticketUrl ? (
+              <a
+                href={ticketUrl}
+                class="group/btn relative shrink-0 overflow-hidden rounded-full border border-white/30 px-5 py-1.5 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:border-white"
+              >
+                <span class="relative z-10 transition-colors duration-300 group-hover/btn:text-black">
+                  Entradas
+                </span>
+                <span class="absolute inset-0 translate-y-full bg-white transition-transform duration-300 group-hover/btn:translate-y-0"></span>
+              </a>
+            ) : (
+              <span class="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-400">
+                Gratuito
+              </span>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   </div>
