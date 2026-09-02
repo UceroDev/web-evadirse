@@ -1,0 +1,40 @@
+---
+import newAlbumImage from "../assets/img/portada-disco-negro.jpeg";
+import vivirLentoCover from "../assets/img/portada-vivir-lento.jpeg";
+---
+
+<section id="new-album" class="relative min-h-168 overflow-hidden md:min-h-144">
+  <!-- Degradado superior -->
+  <div
+    class="absolute inset-x-0 top-0 z-10 h-48 bg-linear-to-b from-[#171717] to-transparent"
+  >
+  </div>
+
+  <!-- Degradado inferior -->
+  <div
+    class="absolute inset-x-0 bottom-0 z-10 h-48 bg-linear-to-t from-[#171717] to-transparent"
+  >
+  </div>
+
+  <!-- Imagen de fondo -->
+  <div
+    class="absolute -inset-6 z-0 bg-top bg-cover bg-no-repeat opacity-10"
+    style={`background-image: url(${newAlbumImage.src});`}
+    data-hero-bg
+  >
+  </div>
+
+  <div class="absolute inset-0 z-20 grid grid-cols-1 place-items-center gap-8 px-6 py-20 text-center md:grid-cols-2 md:gap-12 md:px-10 md:py-16">
+    <div class="max-w-xl font-anton text-white">
+      <h2 class="text-5xl leading-[0.95] sm:text-7xl md:text-8xl">PRIMER DISCO</h2>
+      <h3 class="mt-2 text-4xl leading-[0.95] sm:text-6xl md:text-7xl">'VIVIR LENTO'</h3>
+      <p class="text-2xl mt-2">próximamente</p>
+    </div>
+
+    <img
+      src={vivirLentoCover.src}
+      alt="Portada del disco Vivir Lento de Evadirse"
+      class="w-[min(72vw,20rem)] max-w-full md:w-[min(32vw,24rem)]"
+    />
+  </div>
+</section>
