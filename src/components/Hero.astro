@@ -1,24 +1,20 @@
 ---
 import Header from "../components/Header.astro";
-// import heroImage from "../assets/img/hero.webp";
+import heroImage from "../assets/img/hero.webp";
 import SocialLinks from "../components/SocialLinks.astro";
-import heroVideo from "../assets/video-hero.mp4";
+//import heroVideo from "../assets/video-hero.mp4";
 ---
 
-<section class="relative min-h-screen overflow-hidden bg-[#171717]">
+<section class="relative min-h-screen overflow-hidden">
   <div class="absolute inset-0 overflow-hidden">
-    <video
-      autoplay
-      loop
-      muted
-      playsinline
-      class="absolute inset-0 h-full w-full object-cover"
-    >
-      <source src={heroVideo} type="video/mp4" />
-    </video>
+    <div
+      class="absolute -inset-6 bg-cover bg-center bg-no-repeat"
+      style={`background-image: url(${heroImage.src});`}
+      data-hero-bg
+    ></div>
   </div>
 
-  <div class="absolute inset-0 bg-black/30" data-hero-shade></div>
+  <div class="absolute inset-0 bg-black/50" data-hero-shade></div>
 
   <div
     class="absolute inset-0 opacity-0 mix-blend-overlay bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.12)_0px,rgba(255,255,255,0.12)_1px,transparent_1px,transparent_6px)]"
