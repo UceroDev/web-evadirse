@@ -7,21 +7,6 @@ export type Event = {
 
 export const events: Event[] = [
   {
-    date: "2 Jun",
-    name: "Razzmatazz",
-    location: "Barcelona",
-  },
-  {
-    date: "20 Jun",
-    name: "Por confirmar",
-    location: "—",
-  },
-  {
-    date: "5 Jul",
-    name: "Festa Major",
-    location: "Terrassa",
-  },
-  {
     date: "10 Oct",
     name: "Sala Rasa 64",
     location: "Terrassa",
