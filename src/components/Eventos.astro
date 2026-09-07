@@ -22,7 +22,7 @@ import { events } from "../data/events";
   <div class="absolute inset-0 bg-black/75" data-hero-shade></div>
 
   <div
-    class="relative z-10 flex min-h-screen flex-col items-center justify-center px-6"
+    class="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-24"
   >
     <div class="mb-12 text-center">
       <h2 class="font-anton text-5xl text-white sm:text-6xl lg:text-7xl">
@@ -30,37 +30,39 @@ import { events } from "../data/events";
       </h2>
     </div>
 
-    <div class="mx-auto w-full max-w-4xl">
-      <div class="divide-y divide-white/10">
+    <div class="mx-auto w-full max-w-6xl">
+      <div class="divide-y divide-white/25 border-y border-white/25">
         {events.map(({ date, name, location, ticketUrl }) => (
           <div
-            class="group flex items-center justify-between gap-4 rounded-sm py-5 transition-all duration-300"
+            class="group flex flex-col items-start justify-between gap-4 py-5 transition-all duration-300 md:flex-row md:items-center md:gap-8 md:py-4"
           >
             <span
-              class="w-36 shrink-0 text-sm font-semibold uppercase tracking-widest text-white"
+              class="w-full shrink-0 text-2xl font-semibold uppercase tracking-wide text-white md:w-36 md:text-3xl"
             >
               {date}
             </span>
 
             <div class="flex-1">
-              <p class="font-anton text-2xl uppercase text-white sm:text-3xl">
+              <p class="font-anton text-3xl uppercase text-[#A8AECD] sm:text-4xl">
                 {name}
               </p>
-              <p class="mt-0.5 text-sm tracking-wide text-white">{location}</p>
+              <p class="mt-0.5 font-anton text-lg tracking-wide text-white sm:text-xl">
+                {location}
+              </p>
             </div>
 
             {ticketUrl ? (
               <a
                 href={ticketUrl}
-                class="group/btn relative shrink-0 overflow-hidden rounded-full border border-white/30 px-5 py-1.5 text-xs font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:border-white"
+                class="group/btn relative shrink-0 overflow-hidden rounded-full border border-[#A8AECD] px-5 py-2 font-serif text-sm uppercase tracking-wide text-[#A8AECD] transition-all duration-300 hover:border-[#A8AECD]"
               >
                 <span class="relative z-10 transition-colors duration-300 group-hover/btn:text-black">
                   Entradas
                 </span>
-                <span class="absolute inset-0 translate-y-full bg-white transition-transform duration-300 group-hover/btn:translate-y-0"></span>
+                <span class="absolute inset-0 translate-y-full bg-[#A8AECD] transition-transform duration-300 group-hover/btn:translate-y-0"></span>
               </a>
             ) : (
-              <span class="shrink-0 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-emerald-400">
+              <span class="shrink-0 rounded-full border border-emerald-400/50 bg-emerald-400/10 px-4 py-2 text-sm uppercase tracking-wide text-emerald-300">
                 Gratuito
               </span>
             )}
