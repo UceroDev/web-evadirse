@@ -1,0 +1,21 @@
+---
+import { musicvideos } from "../data/music-videos";
+---
+
+<section id="videos" class="relative overflow-hidden">
+  <div class="flex flex-wrap justify-center gap-6 p-6">
+    {musicvideos.map((video) => {
+      const videoId = video.link.split("youtu.be/")[1];
+
+      return (
+        <iframe
+          class="w-full max-w-xl aspect-video rounded-lg"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title={video.name}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      );
+    })}
+  </div>
+</section>
