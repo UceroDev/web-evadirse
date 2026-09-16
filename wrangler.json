@@ -1,0 +1,5 @@
+{
+  "name": "web-evadirse",
+  "compatibility_date": "2024-09-16",
+  "pages_build_output_dir": "./dist"
+}
