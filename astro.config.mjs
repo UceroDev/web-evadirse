@@ -3,13 +3,14 @@ import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+      remoteBindings: true,
+    },
+  }),
   integrations: [],
   vite: {
     plugins: [tailwindcss()]
   },
-  platformProxy: {
-      enabled: true,
-      remoteBindings: true,
-    },
 });
