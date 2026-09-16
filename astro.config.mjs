@@ -7,5 +7,9 @@ export default defineConfig({
   integrations: [],
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  platformProxy: {
+      enabled: true,
+      remoteBindings: true,
+    },
 });
