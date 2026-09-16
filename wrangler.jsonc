@@ -1,13 +1,16 @@
 {
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "main": "@astrojs/cloudflare/entrypoints/server",
   "name": "web-evadirse",
   "compatibility_date": "2026-08-31",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS"
   },
   "kv_namespaces": [
     {
       "binding": "ENTRADAS_QR",
-      "id": "entradas"
+      "id": "fa3a03daab634f87b3a3beec583f0742"
     }
   ]
 }
