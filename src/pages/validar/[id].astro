@@ -1,0 +1,56 @@
+---
+export const prerender = false;
+
+import { env } from "cloudflare:workers";
+
+const { id } = Astro.params;
+
+if (!id) {
+  return new Response("No encontrado", { status: 404 });
+}
+
+const kv = env.ENTRADAS_QR;
+const pinCorrecto = env.PIN_VALIDACION;
+
+let error = "";
+
+if (Astro.request.method === "POST") {
+  const formData = await Astro.request.formData();
+  const pinIntroducido = formData.get("pin");
+
+  if (pinIntroducido === pinCorrecto) {
+    const rawExistente = await kv.get(id);
+    const entradaExistente = rawExistente ? JSON.parse(rawExistente) : null;
+
+    if (entradaExistente && !entradaExistente.usada) {
+      entradaExistente.usada = true;
+      await kv.put(id, JSON.stringify(entradaExistente));
+    }
+  } else {
+    error = "PIN incorrecto";
+  }
+}
+
+const raw = await kv.get(id);
+const entrada = raw ? JSON.parse(raw) : null;
+
+---
+
+{!entrada && <p>Entrada no encontrada</p>}
+
+{entrada && entrada.usada && <p>Esta entrada ya fue usada</p>}
+
+{entrada && !entrada.usada && (
+  <div>
+    <p>Entrada válida ✅</p>
+
+    {error && <p class="text-red-600">{error}</p>}
+
+    <form method="POST">
+      <input type="password" name="pin" placeholder="PIN" required autofocus />
+      <button type="submit">Marcar como usada</button>
+    </form>
+
+    <p class="text-red-600">! Al marcar una entrada como usada esta no se puede volver a utilizar. Esta acción NO se puede deshacer.</p>
+  </div>
+)}
