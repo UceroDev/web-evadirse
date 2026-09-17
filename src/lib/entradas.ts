@@ -19,3 +19,15 @@ export async function marcarComoUsada(
   entrada.usada = true;
   await kv.put(id, JSON.stringify(entrada));
 }
+
+const CONTADOR_KEY = "contador_usadas";
+
+export async function getContador(kv: KVNamespace): Promise<number> {
+  const valor = await kv.get(CONTADOR_KEY);
+  return valor ? parseInt(valor, 10) : 0;
+}
+
+export async function incrementarContador(kv: KVNamespace): Promise<void> {
+  const actual = await getContador(kv);
+  await kv.put(CONTADOR_KEY, String(actual + 1));
+}
