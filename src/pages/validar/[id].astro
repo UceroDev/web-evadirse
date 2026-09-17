@@ -35,14 +35,14 @@ if (Astro.request.method === "POST") {
       await incrementarContador(kv);
     }
 
-    return Astro.redirect(`/validar/${id}?marcado=1`);
+    return Astro.redirect(`/validar/${id}?marcado=usada`);
   }
 
   error = "PIN incorrecto";
 }
 
 const entrada = await getEntrada(kv, id);
-const reciénMarcada = Astro.url.searchParams.get("marcado") === "1";
+const reciénMarcada = Astro.url.searchParams.get("marcado") === "usada";
 const contador = await getContador(kv);
 ---
 
