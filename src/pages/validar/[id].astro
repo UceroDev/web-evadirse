@@ -44,6 +44,9 @@ if (Astro.request.method === "POST") {
 const entrada = await getEntrada(kv, id);
 const reciénMarcada = Astro.url.searchParams.get("marcado") === "usada";
 const contador = await getContador(kv);
+
+Astro.response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate");
+Astro.response.headers.set("Pragma", "no-cache");
 ---
 
 <Layout title="Validar entrada">
