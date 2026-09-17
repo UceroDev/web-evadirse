@@ -2,6 +2,9 @@
 export const prerender = false;
 
 import { env } from "cloudflare:workers";
+import Layout from "../../layouts/Base.astro";
+import { getEntrada, marcarComoUsada } from "../../lib/entradas";
+import bgImagen from "../../assets/img/eventos-imagen-2.webp";
 
 const { id } = Astro.params;
 
@@ -19,38 +22,69 @@ if (Astro.request.method === "POST") {
   const pinIntroducido = formData.get("pin");
 
   if (pinIntroducido === pinCorrecto) {
-    const rawExistente = await kv.get(id);
-    const entradaExistente = rawExistente ? JSON.parse(rawExistente) : null;
+    const entrada = await getEntrada(kv, id);
 
-    if (entradaExistente && !entradaExistente.usada) {
-      entradaExistente.usada = true;
-      await kv.put(id, JSON.stringify(entradaExistente));
+    if (entrada && !entrada.usada) {
+      await marcarComoUsada(kv, id, entrada);
     }
-  } else {
-    error = "PIN incorrecto";
+
+    return Astro.redirect(`/validar/${id}`);
   }
+
+  error = "PIN incorrecto";
 }
 
-const raw = await kv.get(id);
-const entrada = raw ? JSON.parse(raw) : null;
-
+const entrada = await getEntrada(kv, id);
 ---
 
-{!entrada && <p>Entrada no encontrada</p>}
+<Layout title="Validar entrada">
+  <div
+    style={{ backgroundImage: `url(${bgImagen.src})` }}
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform flex items-center justify-center p-4"
+  >
+    <div
+      class="relative z-10 bg-white/30 backdrop-blur-md p-6 rounded-xl text-center"
+    >
+      {!entrada && <p class="text-3xl font-anton text-red-600 [-webkit-text-stroke:1px_black]">Entrada no encontrada</p>}
 
-{entrada && entrada.usada && <p>Esta entrada ya fue usada</p>}
+      {entrada?.usada && <p class="text-2xl font-anton text-yellow-400 [-webkit-text-stroke:1px_black]">⚠️ Esta entrada ya fue usada</p>}
 
-{entrada && !entrada.usada && (
-  <div>
-    <p>Entrada válida ✅</p>
+      {
+        entrada && !entrada.usada && (
+          <>
+            <p class="text-4xl font-anton text-green-500 mb-6 [-webkit-text-stroke:1px_black]">
+              Entrada válida
+            </p>
 
-    {error && <p class="text-red-600">{error}</p>}
+            {error && <p class="text-red-600">{error}</p>}
 
-    <form method="POST">
-      <input type="password" name="pin" placeholder="PIN" required autofocus />
-      <button type="submit">Marcar como usada</button>
-    </form>
+            <form method="POST">
+              <input
+                type="password"
+                name="pin"
+                placeholder="PIN"
+                required
+                autofocus
+                class="bg-white p-2 rounded-2xl"
+              />
+              <button
+                type="submit"
+                class="bg-red-600 text-white font-bold py-2 px-4 border-b-4 border-red-800 rounded m-4"
+              >
+                Marcar como usada
+              </button>
+            </form>
 
-    <p class="text-red-600">! Al marcar una entrada como usada esta no se puede volver a utilizar. Esta acción NO se puede deshacer.</p>
+            <>
+              <p class="text-red-700 mb-2">
+                Al marcar una entrada como usada esta no se puede volver a
+                utilizar.
+              </p>
+              <p class="text-red-700">Esta acción NO se puede deshacer.</p>
+            </>
+          </>
+        )
+      }
+    </div>
   </div>
-)}
+</Layout>
