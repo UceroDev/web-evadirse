@@ -19,7 +19,7 @@ if (!id) {
 
 const kv = env.ENTRADAS_QR;
 const pinCorrecto = env.PIN_VALIDACION;
-const TOTAL_ENTRADAS = 50; // ajusta el aforo aquí
+const TOTAL_ENTRADAS = 50;
 
 let error = "";
 
@@ -32,7 +32,7 @@ if (Astro.request.method === "POST") {
 
     if (entrada && !entrada.usada) {
       await marcarComoUsada(kv, id, entrada);
-      await incrementarContador(kv); // solo suma si de verdad la marcamos ahora
+      await incrementarContador(kv);
     }
 
     return Astro.redirect(`/validar/${id}?marcado=1`);
@@ -54,12 +54,6 @@ const contador = await getContador(kv);
     <div
       class="relative z-10 bg-white/30 backdrop-blur-md p-6 rounded-xl text-center"
     >
-      <p
-        class="text-xl font-bold text-white mb-4 [-webkit-text-stroke:1px_black]"
-      >
-        {contador}/{TOTAL_ENTRADAS}
-      </p>
-
       {
         !entrada && (
           <p class="text-3xl font-anton text-red-600 [-webkit-text-stroke:1px_black]">
