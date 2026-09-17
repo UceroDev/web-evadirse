@@ -28,13 +28,17 @@ if (Astro.request.method === "POST") {
       await marcarComoUsada(kv, id, entrada);
     }
 
-    return Astro.redirect(`/validar/${id}`);
+    // marca en la URL que acabamos de validarla en este momento
+    return Astro.redirect(`/validar/${id}?marcado=1`);
   }
 
   error = "PIN incorrecto";
 }
 
 const entrada = await getEntrada(kv, id);
+
+// true solo justo después de marcarla (viene del redirect de arriba)
+const reciénMarcada = Astro.url.searchParams.get("marcado") === "1";
 ---
 
 <Layout title="Validar entrada">
@@ -45,9 +49,29 @@ const entrada = await getEntrada(kv, id);
     <div
       class="relative z-10 bg-white/30 backdrop-blur-md p-6 rounded-xl text-center"
     >
-      {!entrada && <p class="text-3xl font-anton text-red-600 [-webkit-text-stroke:1px_black]">Entrada no encontrada</p>}
+      {
+        !entrada && (
+          <p class="text-3xl font-anton text-red-600 [-webkit-text-stroke:1px_black]">
+            Entrada no encontrada
+          </p>
+        )
+      }
 
-      {entrada?.usada && <p class="text-2xl font-anton text-yellow-400 [-webkit-text-stroke:1px_black]">⚠️ Esta entrada ya fue usada</p>}
+      {
+        entrada?.usada && reciénMarcada && (
+          <p class="text-3xl font-anton text-green-500 [-webkit-text-stroke:1px_black]">
+            ✅ Entrada marcada como usada
+          </p>
+        )
+      }
+
+      {
+        entrada?.usada && !reciénMarcada && (
+          <p class="text-3xl font-anton text-yellow-400 [-webkit-text-stroke:1px_black]">
+            ⚠️ Esta entrada ya ha sido usada
+          </p>
+        )
+      }
 
       {
         entrada && !entrada.usada && (
@@ -75,13 +99,11 @@ const entrada = await getEntrada(kv, id);
               </button>
             </form>
 
-            <>
-              <p class="text-red-700 mb-2">
-                Al marcar una entrada como usada esta no se puede volver a
-                utilizar.
-              </p>
-              <p class="text-red-700">Esta acción NO se puede deshacer.</p>
-            </>
+            <p class="text-red-700 mb-2">
+              Al marcar una entrada como usada esta no se puede volver a
+              utilizar.
+            </p>
+            <p class="text-red-700">Esta acción NO se puede deshacer.</p>
           </>
         )
       }
