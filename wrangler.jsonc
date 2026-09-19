@@ -1,16 +1,24 @@
 {
-	"$schema": "./node_modules/wrangler/config-schema.json",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"name": "web-evadirse",
-	"compatibility_date": "2026-08-31",
-	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
-	},
-	"kv_namespaces": [
-		{
-			"binding": "ENTRADAS_QR",
-			"id": "39893e2d561543eb8dc99d10b55973d9"
-		}
-	]
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "name": "web-evadirse",
+  "compatibility_date": "2026-08-31",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+  },
+  "kv_namespaces": [
+    {
+      "binding": "ENTRADAS_QR",
+      "id": "39893e2d561543eb8dc99d10b55973d9",
+    },
+    {
+      "binding": "RESERVAS_KV",
+      "id": "9c39aab2547c441ca8fa236c22396544",
+    },
+  ],
+  "send_email": [
+    { "name": "EMAIL", "destination_address": "merch.evadirse@gmail.com" },
+  ],
 }
