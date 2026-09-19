@@ -1,0 +1,128 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+
+import guiaDeTallas from "../assets/img/guia-de-tallas.png";
+
+const inputStyles = "mt-3 w-full rounded-xl bg-white p-2 text-black";
+---
+
+<Base title="EVADIRSE | Reservar merch">
+  <div class="relative z-10" data-hero-header>
+    <Header />
+  </div>
+
+  <section class="flex min-h-screen flex-col items-center px-4 py-12">
+    <div
+      class="grid w-full max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 md:items-start md:gap-x-14"
+    >
+      <div class="flex flex-col gap-16">
+        <div
+          class="flex w-full max-w-xl flex-col gap-6 text-lg leading-relaxed text-white sm:text-2xl"
+        >
+          <p>Camiseta blanca / negra: 14€</p>
+          <p>CD ‘Vivir Lento’: 10€</p>
+          <p><b>Oferta</b> · CD + Camiseta blanca / negra: 20€</p>
+          <p>
+            Nos pondremos en contacto contigo en cuanto tengamos el merch listo.
+          </p>
+          <p>¡Muchas gracias por el apoyo!</p>
+        </div>
+
+        <div
+          class="flex w-full flex-col items-center text-lg text-white sm:text-2xl"
+        >
+          <p>Guía de tallas para las camisetas:</p>
+          <img
+            src={guiaDeTallas.src}
+            alt="Guia de tallas para las camisetas"
+            class="mt-7 w-full max-w-240"
+          />
+        </div>
+      </div>
+
+      <div class="w-full max-w-md">
+        <h2 class="font-anton text-3xl text-white sm:text-4xl">
+          Formulario de reserva
+        </h2>
+        <form method="post" action="/api/reservar">
+          <!-- Honeypot: invisible para humanos, los bots suelen rellenarlo -->
+          <input
+            type="text"
+            name="empresa"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="absolute -left-2499.75 h-0 w-0 opacity-0"
+          />
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              placeholder="Nombre"
+              autocomplete="given-name"
+              required
+              class={inputStyles}
+            />
+
+            <input
+              id="apellido"
+              name="apellido"
+              type="text"
+              placeholder="Apellido"
+              autocomplete="family-name"
+              required
+              class={inputStyles}
+            />
+          </div>
+
+          <input
+            id="correo"
+            name="correo"
+            type="email"
+            placeholder="Correo electrónico"
+            autocomplete="email"
+            required
+            class={inputStyles}
+          />
+
+          <select name="reserva" id="reserva" required class={inputStyles}>
+            <option value="" disabled selected hidden>
+              ¿Qué quieres reservar?
+            </option>
+            <option value="camiseta-negra">Camiseta 'Vivir Lento' negra</option>
+            <option value="camiseta-blanca"
+              >Camiseta 'Vivir Lento' blanca</option
+            >
+            <option value="camiseta-negra-cd">Camiseta negra + CD</option>
+            <option value="camiseta-blanca-cd">Camiseta blanca + CD</option>
+            <option value="cd">CD 'Vivir Lento'</option>
+          </select>
+
+          <textarea
+            name="comentarios"
+            id="comentarios"
+            placeholder="Comentarios / preguntas / tallas"
+            class={`${inputStyles} h-44`}></textarea>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAE9C95OnrbQ-a0cB"></div>
+
+          <button
+            type="submit"
+            class="mx-auto mt-6 block w-34 rounded-3xl bg-white p-5 text-xl text-black shadow-[8px_8px_0_#555] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0_#555]"
+            >RESERVAR</button
+          >
+        </form>
+
+        <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA"></div>
+
+        <script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          async
+          defer></script>
+      </div>
+    </div>
+  </section>
+</Base>
