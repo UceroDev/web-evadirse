@@ -1,0 +1,88 @@
+---
+import merchBg1 from "../assets/img/portada-disco-negro.jpeg";
+import merchBg2 from "../assets/img/fm-terrassa.webp";
+import blackTFront from "../assets/img/camiseta-negra-delante.png";
+import blackTBack from "../assets/img/camiseta-negra-detras.png";
+import whiteTFront from "../assets/img/camiseta-blanca-delante.png";
+import whiteTBack from "../assets/img/camiseta-blanca-detras.png";
+import cd from "../assets/img/cd.png";
+---
+
+<section id="merch" class="relative">
+  <!-- Degradado superior -->
+  <div
+    class="absolute inset-x-0 top-0 z-10 h-300 bg-linear-to-b from-[#171717] to-transparent"
+  >
+  </div>
+
+  <div
+    class="h-200 overflow-hidden bg-cover bg-position-[center_85%]"
+    style={`background-image: url(${merchBg1.src});`}
+  >
+    <div class="relative z-10 flex h-full items-center justify-center">
+      <img
+        src={blackTFront.src}
+        alt="Camiseta negra del disco Vivir Lento de Evadirse"
+      />
+      <img
+        src={blackTBack.src}
+        alt="Camiseta negra del disco Vivir Lento de Evadirse"
+      />
+    </div>
+  </div>
+
+  <div
+    class="relative h-400 overflow-hidden bg-cover bg-position-[center_85%]"
+    style={`background-image: url(${merchBg2.src});`}
+  >
+    <div class="absolute inset-0 bg-black/70" data-hero-shade></div>
+
+    <!-- Degradado entre ambas secciones -->
+    <div
+      class="absolute inset-x-0 top-0 z-11 h-200 bg-linear-to-b from-[#0a0a0a] to-transparent"
+    >
+    </div>
+
+    <p class="relative z-12 text-center font-anton text-5xl text-white">
+      Reserva tu camiseta · 14€
+    </p>
+
+    <div class="relative z-12 flex mt-28 items-center justify-center">
+      <img
+        src={whiteTFront.src}
+        alt="Camiseta blanca del disco Vivir Lento de Evadirse"
+      />
+      <img
+        src={whiteTBack.src}
+        alt="Camiseta blanca del disco Vivir Lento de Evadirse"
+      />
+    </div>
+
+    <div class="relative z-12 flex items-center justify-center mt-32 gap-11">
+      <div class="flex flex-col items-center">
+        <p class="text-white font-anton text-5xl">Camiseta + CD · 20€</p>
+        <a
+          href="#"
+          class="mt-6 block w-34 rounded-3xl bg-white p-5 text-center text-xl text-black shadow-[8px_8px_0_#555] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0_#555]"
+        >
+          RESERVAR
+        </a>
+      </div>
+      <div>
+        <p class="text-white font-anton text-5xl text-center mb-4">
+          Reserva tu CD · 10€
+        </p>
+        <img
+          src={cd.src}
+          alt="Imagen del CD de Vivir Lento de Evadirse"
+          class="w-130"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="absolute inset-x-0 bottom-0 z-10 h-48 bg-linear-to-t from-[#171717] to-transparent"
+  >
+  </div>
+</section>
