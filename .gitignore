@@ -30,4 +30,7 @@ pnpm-debug.log*
 *.sqlite-wal
 *.sqlite-journal
 
+# Cloudflare / Wrangler
 .dev.vars
+.dev.vars.*
+.wrangler/
