@@ -3,7 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
 import { EmailMessage } from 'cloudflare:email';
-import { createMimeMessage } from 'mimetext';
+import { createMimeMessage, Mailbox } from 'mimetext';
 
 const REMITENTE = 'reservas@evadirseoficial.com';
 // Debe coincidir con destination_address de wrangler.jsonc
@@ -48,7 +48,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const reserva = limpiar(formData.get('reserva'), 40);
   const comentarios = limpiar(formData.get('comentarios'), 1000);
 
-  const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+  const correoValido = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(correo);
 
   if (!nombre || !apellido || !correoValido || !OPCIONES_VALIDAS.includes(reserva)) {
     return new Response('Datos inválidos', { status: 400 });
@@ -85,21 +85,23 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
 
   // 6. Construir y enviar el correo con Email Routing
-  const msg = createMimeMessage();
-  msg.setSender({ name: 'Reservas Merch', addr: REMITENTE });
-  msg.setRecipient(CORREO_MERCH);
-  msg.setHeader('Reply-To', correo); // así puedes responder directo al comprador
-  msg.setSubject(`Nueva reserva: ${reserva}`);
-  msg.addMessage({
-    contentType: 'text/plain',
-    data:
-      `Nombre: ${nombre} ${apellido}\n` +
-      `Correo: ${correo}\n` +
-      `Reserva: ${reserva}\n` +
-      `Comentarios: ${comentarios || '(sin comentarios)'}`,
-  });
-
   try {
+    const msg = createMimeMessage();
+    msg.setSender({ name: 'Reservas Merch', addr: REMITENTE });
+    msg.setRecipient(CORREO_MERCH);
+    // Reply-To exige un objeto Mailbox: con un string, mimetext lanza una excepción.
+    // Así puedes responder directo al comprador.
+    msg.setHeader('Reply-To', new Mailbox({ name: `${nombre} ${apellido}`, addr: correo }));
+    msg.setSubject(`Nueva reserva: ${reserva}`);
+    msg.addMessage({
+      contentType: 'text/plain',
+      data:
+        `Nombre: ${nombre} ${apellido}\n` +
+        `Correo: ${correo}\n` +
+        `Reserva: ${reserva}\n` +
+        `Comentarios: ${comentarios || '(sin comentarios)'}`,
+    });
+
     const emailMessage = new EmailMessage(REMITENTE, CORREO_MERCH, msg.asRaw());
     await env.EMAIL.send(emailMessage);
   } catch (err) {
