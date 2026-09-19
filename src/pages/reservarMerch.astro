@@ -107,16 +107,20 @@ const inputStyles = "mt-3 w-full rounded-xl bg-white p-2 text-black";
             placeholder="Comentarios / preguntas / tallas"
             class={`${inputStyles} h-44`}></textarea>
 
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAE9C95OnrbQ-a0cB"></div>
-
+          <div
+            class="cf-turnstile"
+            data-sitekey={import.meta.env.DEV
+              ? "1x00000000000000000000AA"
+              : "0x4AAAAAAE9C95OnrbQ-a0cB"}
+          >
+          </div>
+          
           <button
             type="submit"
             class="mx-auto mt-6 block w-34 rounded-3xl bg-white p-5 text-xl text-black shadow-[8px_8px_0_#555] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0_#555]"
             >RESERVAR</button
           >
         </form>
-
-        <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA"></div>
 
         <script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
