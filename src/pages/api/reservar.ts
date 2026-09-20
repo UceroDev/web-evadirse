@@ -91,31 +91,31 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
 
   // 5. Rate limiting por IP con KV
-  if (env.RESERVAS_KV) {
-    try {
-      const clave = `rl:${ip}`;
-      if (await env.RESERVAS_KV.get(clave)) {
-        return new Response("Demasiadas peticiones, espera un momento", {
-          status: 429,
-        });
-      }
-      await env.RESERVAS_KV.put(clave, "1", { expirationTtl: 60 });
-    } catch (err) {
-      console.error("Error con KV:", err);
-      // no bloquees la reserva solo porque falle el rate limit
-    }
-  }
+  // if (env.RESERVAS_KV) {
+  //   try {
+  //     const clave = `rl:${ip}`;
+  //     if (await env.RESERVAS_KV.get(clave)) {
+  //       return new Response("Demasiadas peticiones, espera un momento", {
+  //         status: 429,
+  //       });
+  //     }
+  //     await env.RESERVAS_KV.put(clave, "1", { expirationTtl: 60 });
+  //   } catch (err) {
+  //     console.error("Error con KV:", err);
+  //     // no bloquees la reserva solo porque falle el rate limit
+  //   }
+  // }
 
-  // 5. Rate limiting por IP con KV
-  if (env.RESERVAS_KV) {
-    const clave = `rl:${ip}`;
-    if (await env.RESERVAS_KV.get(clave)) {
-      return new Response("Demasiadas peticiones, espera un momento", {
-        status: 429,
-      });
-    }
-    await env.RESERVAS_KV.put(clave, "1", { expirationTtl: 60 });
-  }
+  // // 5. Rate limiting por IP con KV
+  // if (env.RESERVAS_KV) {
+  //   const clave = `rl:${ip}`;
+  //   if (await env.RESERVAS_KV.get(clave)) {
+  //     return new Response("Demasiadas peticiones, espera un momento", {
+  //       status: 429,
+  //     });
+  //   }
+  //   await env.RESERVAS_KV.put(clave, "1", { expirationTtl: 60 });
+  // }
 
   // 6. Construir y enviar el correo con Email Routing
   try {
