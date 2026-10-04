@@ -24,17 +24,25 @@ import vivirLentoAlbumCover from "../assets/img/portada-vivir-lento-disco.webp";
   >
   </div>
 
-  <div class="absolute inset-0 z-20 grid grid-cols-1 place-items-center gap-8 px-6 py-20 text-center md:grid-cols-2 md:gap-12 md:px-10 md:py-16">
+  <div
+    class="relative z-20 flex flex-col items-center gap-5 px-6 py-20 text-center md:px-10 md:py-16"
+  >
     <div class="max-w-xl font-anton text-white">
-      <h2 class="text-5xl leading-[0.95] sm:text-7xl md:text-8xl">PRIMER DISCO</h2>
-      <h3 class="mt-2 text-4xl leading-[0.95] sm:text-6xl md:text-7xl">'VIVIR LENTO'</h3>
-      <p class="text-2xl mt-2">25/09/2026</p>
+      <h2 class="text-5xl leading-[0.95] sm:text-7xl md:text-8xl">
+        VIVIR LENTO YA DISPONIBLE
+      </h2>
     </div>
 
-    <img
-      src={vivirLentoAlbumCover.src}
-      alt="Portada del disco Vivir Lento de Evadirse"
-      class="w-[min(72vw,20rem)] max-w-full md:w-[min(32vw,24rem)]"
-    />
+    <div class="w-full max-w-xl">
+      <p class="mb-3 text-left font-semibold text-xl text-white">Spotify:</p>
+      <iframe
+        src="https://open.spotify.com/embed/album/4ewQkQqMkScp5DaMEMjiFH?utm_source=generator"
+        class="w-full rounded-xl"
+        height="352"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Vivir Lento en Spotify"></iframe>
+      <p class="mt-3 text-left font-semibold text-xl text-white">Escúchalo en otras plataformas:</p>
+    </div>
   </div>
 </section>
