@@ -20,9 +20,9 @@ export const covers = [
     youtubeLink: "https://www.youtube.com/watch?v=M45l-rUEsfw",
   },
   {
-    title: "PÃ¡jaros Verdes",
+    title: "Pájaros Verdes",
     image: pajarosVerdesCover,
-    alt: "Portada de Pajaros Verdes",
+    alt: "Portada de Pájaros Verdes",
     spotifyLink: "https://open.spotify.com/intl-es/track/6KH4K7kKHnm4x6BhKssXNt?si=38670b492d144f14",
     youtubeLink: "https://www.youtube.com/watch?v=k5-GL-Rdhxw",
   },
