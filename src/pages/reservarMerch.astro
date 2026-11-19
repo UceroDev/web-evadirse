@@ -18,7 +18,7 @@ const inputStyles = "mt-3 w-full rounded-xl bg-white p-2 text-black";
     >
       <div class="flex flex-col gap-16">
         <div
-          class="flex w-full max-w-xl flex-col gap-6 text-lg leading-relaxed text-white sm:text-2xl"
+          class="flex w-full max-w-xl flex-col gap-6 leading-relaxed text-white"
         >
           <p>Camiseta blanca / negra: 14€</p>
           <p>CD ‘Vivir Lento’: 10€</p>
@@ -27,6 +27,33 @@ const inputStyles = "mt-3 w-full rounded-xl bg-white p-2 text-black";
             Nos pondremos en contacto contigo en cuanto tengamos el merch listo.
           </p>
           <p>¡Muchas gracias por el apoyo!</p>
+        </div>
+
+        <div class="w-full text-lg text-white sm:text-xl">
+          <p class="mb-4 font-anton tracking-widest">STOCK ACTUAL</p>
+          <div class="grid gap-6 border-t border-white/20 pt-5 sm:grid-cols-2">
+            <div>
+              <p class="mb-3 font-bold">Camisetas negras</p>
+              <div class="flex flex-wrap gap-x-5 gap-y-2 text-base">
+                <p>S <span class="text-sm text-white/70">(Solo 1 unidad)</span></p>
+                <p>M</p>
+                <p>L</p>
+                <p class="text-red-400">XL <span class="text-sm">(Agotada)</span></p>
+                <p class="text-red-400">XXL <span class="text-sm">(Agotada)</span></p>
+              </div>
+            </div>
+
+            <div>
+              <p class="mb-3 font-bold">Camisetas blancas</p>
+              <div class="flex flex-wrap gap-x-5 gap-y-2 text-base">
+                <p>S</p>
+                <p>M</p>
+                <p>L <span class="text-sm text-white/70">(Solo 4 unidades)</span></p>
+                <p class="text-red-400">XL <span class="text-sm">(Agotada)</span></p>
+                <p class="text-red-400">XXL <span class="text-sm">(No disponible)</span></p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div
@@ -142,6 +169,8 @@ const inputStyles = "mt-3 w-full rounded-xl bg-white p-2 text-black";
       </div> -->
     </div>
 
-    <a href="/" class="text-white mt-24 underline">Volver a la página principal</a>
+    <a href="/" class="text-white mt-12 underline"
+      >Volver a la página principal</a
+    >
   </section>
 </Base>
